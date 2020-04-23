@@ -26,6 +26,21 @@ function ResetBlipInfo(blip)
     BLIP_INFO_DATA[blip] = nil
 end
 
+function GenericBlip(pos,sprite,color,display,hd,short,name)
+    local blip = AddBlipForCoord(pos.x,pos.y,pos.z)
+    SetBlipSprite(blip,sprite)
+    SetBlipColour(blip,color)
+    SetBlipDisplay(blip,display)
+    SetBlipHighDetail(blip,hd)
+    SetBlipAsShortRange(blip,short)
+
+    BeginTextCommandSetBlipName("STRING")
+    AddTextComponentString(name)
+    EndTextCommandSetBlipName(blip)
+
+    return blip
+end
+
 function SetBlipInfoTitle(blip, title, rockstarVerified)
     local data = ensureBlipInfo(blip)
     data.title = title or ""
